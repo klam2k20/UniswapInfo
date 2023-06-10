@@ -7,7 +7,7 @@ export const TOP_TOKENS = gql`
       symbol
       name
       totalValueLockedUSD
-      tokenDayData(first: 5, orderBy: date, orderDirection: desc) {
+      tokenDayData(first: 2, orderBy: date, orderDirection: desc) {
         date
         priceUSD
       }
