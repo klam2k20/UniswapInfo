@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+@layer base {
+  body {
+    @apply bg-zinc-800 text-white text-base font-inter w-full min-h-[100vh];
+  }
+  header {
+    @apply bg-zinc-900 fixed top-0 w-full flex items-center justify-between p-2 sm:p-4 max-h-16;
+  }
+}
+
+@layer components {
+  .logo {
+    @apply w-4 sm:w-6 hover:-rotate-6 transition-all;
+  }
+  .navLink {
+    @apply flex-row text-zinc-500 py-1 px-2 text-xs sm:px-3 sm:py-2 sm:text-base rounded-md sm:rounded-lg cursor-pointer hover:text-zinc-200;
+  }
+  .activeNavLink {
+    @apply bg-zinc-800 text-white;
+  }
+}

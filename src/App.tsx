@@ -1,3 +1,10 @@
+import { Outlet, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import TokensPage from './pages/TokensPage';
+import PoolsPage from './pages/PoolsPage';
+import TransactionsPage from './pages/TransactionsPage';
+import NavHeader from './components/NavHeader';
+
 function App() {
   /**
    * Header - Overview Tokens Pools Transactions Link
@@ -14,8 +21,26 @@ function App() {
    *  - Transaction: Transaction Table
    */
   return (
-    <div className="App">
-      <h1 className="text-3xl text-blue-500">Hello world</h1>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/tokens" element={<TokensPage />} />
+          <Route path="/pools" element={<PoolsPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
+        </Route>
+      </Routes>
+    </>
+  );
+}
+
+function Layout() {
+  return (
+    <div className="flex justify-center items-center">
+      <NavHeader />
+      <main className="mt-16 pt-8 max-w-[1200px] w-[90%] h-full">
+        <Outlet />
+      </main>
     </div>
   );
 }
