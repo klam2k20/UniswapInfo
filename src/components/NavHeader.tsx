@@ -14,7 +14,7 @@ const NavHeader = () => {
   }, [location]);
 
   const formatLinkClassNames = (link: string) => {
-    return `navLink ${selected === link ? 'activeNavLink' : ''}`;
+    return `nav_link ${selected === link ? 'active_nav_link' : ''}`;
   };
 
   return (
@@ -23,7 +23,7 @@ const NavHeader = () => {
         <img className="logo" src="uniswap_logo.svg" alt="Uniswap Logo" />
       </Link>
 
-      <div className="flex gap-1 justify-center items-center">
+      <div className="flex items-center justify-center transition-all sm:gap-1">
         <Link className={formatLinkClassNames('overview')} to="/">
           Overview
         </Link>

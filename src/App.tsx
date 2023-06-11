@@ -7,11 +7,9 @@ import NavHeader from './components/NavHeader';
 
 function App() {
   /**
-   * Header - Overview Tokens Pools Transactions Link
    * Token, Pool, Transaction Context
    * Token Table, Pool Table, Transaction Table, Graphs, Stats Card Components
-   * Router on index: Overview, Tokens, Pools, Transactions, Token ID, Pool ID
-   *  - Root Layout: With Header on Top and Outlet
+   * Router on index: Token ID, Pool ID
    * Overall, Token, Pool, Transaction, Token ID, Pool ID Page
    *  - Overall Page: Token, Pool, Transaction Table
    *  - Token: Token Table
@@ -36,9 +34,9 @@ function App() {
 
 function Layout() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="app">
       <NavHeader />
-      <main className="mt-16 pt-8 max-w-[1200px] w-[90%] h-full">
+      <main className="main_wrapper">
         <Outlet />
       </main>
     </div>
