@@ -26,6 +26,6 @@
     @apply cursor-pointer flex-row rounded-md px-2 py-1 text-xs text-zinc-500 transition-all hover:text-zinc-200 sm:rounded-lg sm:px-3 sm:py-2 sm:text-base;
   }
   .active_nav_link {
-    @apply bg-zinc-800 text-white;
+    @apply bg-zinc-800 text-white hover:text-white;
   }
 }
