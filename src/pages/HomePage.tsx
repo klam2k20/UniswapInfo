@@ -1,5 +1,7 @@
+import { TokenTable } from '../components/TokenTable';
+
 const HomePage: React.FC = () => {
-  return <h1 className="text-3xl text-blue-500">Home Page</h1>;
+  return <TokenTable />;
 };
 
 export default HomePage;
