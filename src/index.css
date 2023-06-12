@@ -28,4 +28,22 @@
   .active_nav_link {
     @apply bg-zinc-800 text-white hover:text-white;
   }
+  .table_header {
+    @apply text-lg text-zinc-300;
+  }
+  .token_grid {
+    @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
+  }
+  .md_show {
+    @apply hidden md:inline;
+  }
+  .lg_show {
+    @apply hidden lg:inline;
+  }
+  .left_align {
+    @apply text-left;
+  }
+  .right_align {
+    @apply text-right;
+  }
 }

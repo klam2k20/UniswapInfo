@@ -7,7 +7,6 @@ import NavHeader from './components/NavHeader';
 
 function App() {
   /**
-   * Token, Pool, Transaction Context
    * Token Table, Pool Table, Transaction Table, Graphs, Stats Card Components
    * Router on index: Token ID, Pool ID
    * Overall, Token, Pool, Transaction, Token ID, Pool ID Page
