@@ -49,4 +49,7 @@
   .right_align {
     @apply text-right;
   }
+  .arrow {
+    @apply w-4 cursor-pointer text-white hover:text-zinc-300;
+  }
 }

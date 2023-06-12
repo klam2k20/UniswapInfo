@@ -2,6 +2,7 @@ import { useLazyQuery, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
 import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
+import { ArrowLeftIcon, ArrowRightCircleIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import TokenRow from './TokenRow';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
@@ -15,6 +16,7 @@ export function TokenTable() {
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const [blockNumber, setBlockNumber] = useState<number>();
   const [tokens, setTokens] = useState<FormatToken[]>([]);
+  const [page, setPage] = useState<number>(1);
 
   /**
    * Get top 100 tokens ranked by tvl (USD)
@@ -59,6 +61,10 @@ export function TokenTable() {
     context: { clientName: 'uniswap' }
   });
 
+  /**
+   * Get current and past 24 hour token data once token ids and block number
+   * is obtained
+   */
   useEffect(() => {
     if (tokenIds.length > 0 && blockNumber) {
       getCurrentTokenData();
@@ -78,10 +84,6 @@ export function TokenTable() {
       currentTokenData &&
       blockTokenData
     ) {
-      console.log('current');
-      console.log(currentTokenData);
-      console.log('pass');
-      console.log(blockTokenData);
       const tokenMap = new Map();
       currentTokenData.tokens.forEach((t) => {
         tokenMap.set(t.id, {
@@ -106,6 +108,14 @@ export function TokenTable() {
     }
   }, [loading, blockTokenLoading, error, blockTokenError, currentTokenData, blockTokenData]);
 
+  /**
+   * Handles pagination for the table
+   * @param dir represents which direction was clicked
+   */
+  const handlePage = (dir: string) => {
+    dir === 'left' ? setPage((prev) => prev - 1) : setPage((prev) => prev + 1);
+  };
+
   return (
     <section className="flex flex-col gap-4">
       <h1 className="table_header">Top Tokens</h1>
@@ -118,9 +128,20 @@ export function TokenTable() {
           <span className="md_show right_align text-zinc-300">Volume 24H</span>
           <span className="lg_show right_align text-zinc-300">TVL</span>
         </div>
-        {tokens.map((t, i) => (
-          <TokenRow key={t.id} token={t} index={i + 1} />
+        {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
+          <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
         ))}
+        <div className="flex items-center justify-center gap-2">
+          <ArrowLeftIcon
+            className={`arrow ${page === 1 ? 'hidden' : ''}`}
+            onClick={() => handlePage('left')}
+          />
+          {`Page ${page} of ${(tokens.length / 10) >> 0}`}
+          <ArrowRightIcon
+            className={`arrow ${page === 10 ? 'hidden' : ''}`}
+            onClick={() => handlePage('right')}
+          />
+        </div>
       </div>
     </section>
   );
