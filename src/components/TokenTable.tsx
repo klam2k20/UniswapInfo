@@ -4,7 +4,8 @@ import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../a
 import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import TokenRow from './TokenRow';
-import { LoadingList, LoadingPagination } from './Loading';
+import { LoadingList, LoadingPagination } from './LoadingStates';
+import { ErrorList } from './ErrorStates';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 
@@ -137,25 +138,35 @@ export const TokenTable = () => {
           </>
         )}
 
-        {!tokenIdLoading && !blockNumberLoading && !loading && !blockTokenLoading && (
-          <>
-            {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
-              <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
-            ))}
+        {/* Error State */}
+        {(tokenIdError || blockNumberError || error || blockTokenError) && <ErrorList />}
 
-            <div className="table_pagination">
-              <ArrowLeftIcon
-                className={page === 1 ? 'disabled_arrow' : 'arrow'}
-                onClick={() => handlePage('left')}
-              />
-              {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
-              <ArrowRightIcon
-                className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
-                onClick={() => handlePage('right')}
-              />
-            </div>
-          </>
-        )}
+        {!tokenIdLoading &&
+          !blockNumberLoading &&
+          !loading &&
+          !blockTokenLoading &&
+          !tokenIdError &&
+          !blockNumberError &&
+          !error &&
+          !blockTokenError && (
+            <>
+              {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
+                <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
+              ))}
+
+              <div className="table_pagination">
+                <ArrowLeftIcon
+                  className={page === 1 ? 'disabled_arrow' : 'arrow'}
+                  onClick={() => handlePage('left')}
+                />
+                {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
+                <ArrowRightIcon
+                  className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
+                  onClick={() => handlePage('right')}
+                />
+              </div>
+            </>
+          )}
       </div>
     </section>
   );
