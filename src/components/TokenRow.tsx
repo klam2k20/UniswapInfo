@@ -15,9 +15,11 @@ const TokenRow: React.FunctionComponent<ITokenRowProps> = ({ token, index }) => 
   return (
     <div className="token_grid">
       <span className="md_show left_align">{index}</span>
-      <span className="left_align">
-        {token.name} <span className="text-zinc-500">{`(${token.symbol})`}</span>
+      <span className="left_align md_show">
+        <span>{`${token.name} `}</span>
+        <span className="text-zinc-500">{`(${token.symbol})`}</span>
       </span>
+      <span className="md:hidden">{token.symbol}</span>
       <span className="right_align">{formatPrice(token.priceUSD)}</span>
       <span
         className={`lg_show right_align ${
