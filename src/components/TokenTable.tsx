@@ -113,7 +113,11 @@ export function TokenTable() {
    * @param dir represents which direction was clicked
    */
   const handlePage = (dir: string) => {
-    dir === 'left' ? setPage((prev) => prev - 1) : setPage((prev) => prev + 1);
+    if (dir === 'left' && page > 1) {
+      setPage((prev) => prev - 1);
+    } else if (dir === 'right' && page < Math.ceil(tokens.length / 10)) {
+      setPage((prev) => prev + 1);
+    }
   };
 
   return (
@@ -133,12 +137,12 @@ export function TokenTable() {
         ))}
         <div className="flex items-center justify-center gap-2">
           <ArrowLeftIcon
-            className={`arrow ${page === 1 ? 'hidden' : ''}`}
+            className={page === 1 ? 'disabled_arrow' : 'arrow'}
             onClick={() => handlePage('left')}
           />
-          {`Page ${page} of ${(tokens.length / 10) >> 0}`}
+          {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
           <ArrowRightIcon
-            className={`arrow ${page === 10 ? 'hidden' : ''}`}
+            className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
             onClick={() => handlePage('right')}
           />
         </div>

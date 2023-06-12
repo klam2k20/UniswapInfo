@@ -52,4 +52,7 @@
   .arrow {
     @apply w-4 cursor-pointer text-white hover:text-zinc-300;
   }
+  .disabled_arrow {
+    @apply w-4 cursor-not-allowed text-white hover:text-white;
+  }
 }
