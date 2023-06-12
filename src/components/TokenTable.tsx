@@ -1,7 +1,7 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { BLOCK, CURRENT_TOKEN_DATA, BLOCK_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
-import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
 import { useEffect, useState } from 'react';
+import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
+import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 
@@ -13,7 +13,7 @@ const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 export function TokenTable() {
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const [blockNumber, setBlockNumber] = useState<number>();
-  const [tokens, setTokens] = useState<Map<string, FormatToken>>(new Map());
+  const [tokens, setTokens] = useState<FormatToken[]>([]);
 
   /**
    * Get top 100 tokens ranked by tvl (USD)
@@ -88,9 +88,18 @@ export function TokenTable() {
         tokens.set(t.id, { ...token, priceChange, volumeChange });
       });
 
-      setTokens(tokens);
+      for (const [id, tokenData] of tokens) {
+        setTokens((prev) => [...prev, { id, ...tokenData }]);
+      }
     }
   }, [loading, blockLoading, error, blockError, currentTokenData, blockTokenData]);
 
-  return <div></div>;
+  return (
+    <>
+      <h1>Top Tokens</h1>
+      {tokens.map((t) => (
+        <p key={t.symbol}>{t.name}</p>
+      ))}
+    </>
+  );
 }

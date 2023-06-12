@@ -36,6 +36,7 @@ export type TokenData = {
 };
 
 export type FormatToken = {
+  id: string;
   name: string;
   symbol: string;
   priceUSD: number;
