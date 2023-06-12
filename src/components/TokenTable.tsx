@@ -78,6 +78,10 @@ export function TokenTable() {
       currentTokenData &&
       blockTokenData
     ) {
+      console.log('current');
+      console.log(currentTokenData);
+      console.log('pass');
+      console.log(blockTokenData);
       const tokenMap = new Map();
       currentTokenData.tokens.forEach((t) => {
         tokenMap.set(t.id, {
@@ -93,7 +97,7 @@ export function TokenTable() {
         const token = tokenMap.get(t.id);
         const oldPrice = parseFloat(t.tokenDayData[0].priceUSD);
         const oldVolume = parseFloat(t.volumeUSD);
-        const priceChange = (token.priceUSD - oldPrice) / oldPrice;
+        const priceChange = oldPrice > 0 ? ((token.priceUSD - oldPrice) / oldPrice) * 100 : 0;
         const volumeChange = token.volume - oldVolume;
         tokenMap.set(t.id, { ...token, priceChange, volumeChange });
       });
@@ -103,19 +107,21 @@ export function TokenTable() {
   }, [loading, blockTokenLoading, error, blockTokenError, currentTokenData, blockTokenData]);
 
   return (
-    <section>
+    <section className="flex flex-col gap-4">
       <h1 className="table_header">Top Tokens</h1>
-      <div className="token_grid">
-        <span className="md_show left_align text-zinc-300">#</span>
-        <span className="left_align text-zinc-300">Name</span>
-        <span className="left_align text-zinc-300">Price</span>
-        <span className="lg_show left_align text-zinc-300">Price Change</span>
-        <span className="md_show right_align text-zinc-300">Volume 24H</span>
-        <span className="lg_show right_align text-zinc-300">TVL</span>
+      <div className="table_list">
+        <div className="token_grid">
+          <span className="md_show left_align text-zinc-300">#</span>
+          <span className="left_align text-zinc-300">Name</span>
+          <span className="right_align text-zinc-300">Price</span>
+          <span className="lg_show right_align text-zinc-300">Price Change</span>
+          <span className="md_show right_align text-zinc-300">Volume 24H</span>
+          <span className="lg_show right_align text-zinc-300">TVL</span>
+        </div>
+        {tokens.map((t, i) => (
+          <TokenRow key={t.id} token={t} index={i + 1} />
+        ))}
       </div>
-      {tokens.map((t, i) => (
-        <TokenRow key={t.id} token={t} index={i + 1} />
-      ))}
     </section>
   );
 }

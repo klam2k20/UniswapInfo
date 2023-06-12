@@ -31,6 +31,9 @@
   .table_header {
     @apply text-lg text-zinc-300;
   }
+  .table_list {
+    @apply flex flex-col gap-4 rounded-lg bg-zinc-900 p-4;
+  }
   .token_grid {
     @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
   }
