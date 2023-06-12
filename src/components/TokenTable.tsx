@@ -2,17 +2,13 @@ import { useLazyQuery, useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
 import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
-import { ArrowLeftIcon, ArrowRightCircleIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import TokenRow from './TokenRow';
+import { LoadingList, LoadingPagination } from './Loading';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 
-/**
- * A table to display a token's name, symbol, price (USD), price change, volume (USD) within the pass 24 hours,
- * and total value locked (USD)
- * @returns TSXElement
- */
-export function TokenTable() {
+export const TokenTable = () => {
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const [blockNumber, setBlockNumber] = useState<number>();
   const [tokens, setTokens] = useState<FormatToken[]>([]);
@@ -132,21 +128,35 @@ export function TokenTable() {
           <span className="md_show right_align text-zinc-300">Volume 24H</span>
           <span className="lg_show right_align text-zinc-300">TVL</span>
         </div>
-        {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
-          <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
-        ))}
-        <div className="flex items-center justify-center gap-2">
-          <ArrowLeftIcon
-            className={page === 1 ? 'disabled_arrow' : 'arrow'}
-            onClick={() => handlePage('left')}
-          />
-          {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
-          <ArrowRightIcon
-            className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
-            onClick={() => handlePage('right')}
-          />
-        </div>
+
+        {/* Loading States */}
+        {(tokenIdLoading || blockNumberLoading || loading || blockTokenLoading) && (
+          <>
+            <LoadingList />
+            <LoadingPagination />
+          </>
+        )}
+
+        {!tokenIdLoading && !blockNumberLoading && !loading && !blockTokenLoading && (
+          <>
+            {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
+              <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
+            ))}
+
+            <div className="table_pagination">
+              <ArrowLeftIcon
+                className={page === 1 ? 'disabled_arrow' : 'arrow'}
+                onClick={() => handlePage('left')}
+              />
+              {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
+              <ArrowRightIcon
+                className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
+                onClick={() => handlePage('right')}
+              />
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
-}
+};

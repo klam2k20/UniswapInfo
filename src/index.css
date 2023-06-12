@@ -53,6 +53,12 @@
     @apply w-4 cursor-pointer text-white hover:text-zinc-300;
   }
   .disabled_arrow {
-    @apply w-4 cursor-not-allowed text-white hover:text-white;
+    @apply w-4 cursor-not-allowed text-zinc-600;
+  }
+  .loading_row {
+    @apply h-6 animate-pulse rounded-full bg-zinc-800;
+  }
+  .table_pagination {
+    @apply flex items-center justify-center gap-2;
   }
 }
