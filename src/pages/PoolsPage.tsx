@@ -1,5 +1,7 @@
+import { PoolTable } from '../components/Pool/PoolTable';
+
 const PoolsPage = () => {
-  return <h1 className="text-3xl text-blue-500">Pools Page</h1>;
+  return <PoolTable limitPerPage={20} />;
 };
 
 export default PoolsPage;
