@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { useLazyQuery } from '@apollo/client';
+import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { TRANSACTION_DATA } from '../../apollo/queries';
 import { FormatTransaction, SortType, TransactionData } from '../../utils/types';
@@ -21,9 +21,16 @@ export function TransactionTable({ limitPerPage }: ITransactionTableProps) {
   /**
    * Get transaction data
    */
-  const { loading, error, data, refetch } = useQuery<TransactionData>(TRANSACTION_DATA, {
-    context: { clientName: 'uniswap' }
-  });
+  const [getTransactionData, { loading, error, data, refetch }] = useLazyQuery<TransactionData>(
+    TRANSACTION_DATA,
+    {
+      context: { clientName: 'uniswap' }
+    }
+  );
+
+  useEffect(() => {
+    getTransactionData();
+  }, []);
 
   /**
    * Format transaction data
@@ -105,9 +112,18 @@ export function TransactionTable({ limitPerPage }: ITransactionTableProps) {
     else setSort({ prop, asc: false });
   };
 
+  /**
+   * Handles re-freshes
+   */
+  const handleRefresh = () => {
+    getTransactionData();
+  };
+
   return (
     <section className="flex flex-col gap-4">
-      <h1 className="table_header">Recent Transactions</h1>
+      <h1 className="table_header">
+        Recent Transactions <ArrowPathIcon className="refresh" onClick={() => handleRefresh()} />
+      </h1>
       <div className="table_list">
         <div className="transaction_grid">
           <span className="left_align text-zinc-300">Transaction</span>

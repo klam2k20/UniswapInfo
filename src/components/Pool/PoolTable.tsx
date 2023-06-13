@@ -1,8 +1,8 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { BLOCK, BLOCK_POOL_DATA, CURRENT_POOL_DATA, TOP_POOL_IDS } from '../../apollo/queries';
-import { BlockData, FormatPool, SortType, PoolData, PoolId, PoolIdData } from '../../utils/types';
+import { BlockData, FormatPool, PoolData, PoolId, PoolIdData, SortType } from '../../utils/types';
 import { sortPools } from '../../utils/utils';
 import { ErrorList } from '../ErrorStates';
 import { LoadingList, LoadingPagination } from '../LoadingStates';
@@ -200,9 +200,20 @@ export const PoolTable = ({ limitPerPage }: IPoolTableProps) => {
     else setSort({ prop, asc: false });
   };
 
+  /**
+   * Handles re-freshes
+   */
+  const handleRefresh = () => {
+    getCurrentPoolData();
+    getBlockDailyPoolData();
+    getBlockWeeklyPoolData();
+  };
+
   return (
     <section className="flex flex-col gap-4">
-      <h1 className="table_header">Top Pools</h1>
+      <h1 className="table_header">
+        Top Pools <ArrowPathIcon className="refresh" onClick={() => handleRefresh()} />
+      </h1>
       <div className="table_list">
         <div className="pool_grid">
           <span className="md_show left_align text-zinc-300">#</span>

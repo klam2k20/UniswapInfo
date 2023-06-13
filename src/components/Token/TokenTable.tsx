@@ -1,5 +1,5 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../../apollo/queries';
 import {
@@ -148,9 +148,19 @@ export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
     else setSort({ prop, asc: false });
   };
 
+  /**
+   * Handles re-freshes
+   */
+  const handleRefresh = () => {
+    getCurrentTokenData();
+    getBlockTokenData();
+  };
+
   return (
     <section className="flex flex-col gap-4">
-      <h1 className="table_header">Top Tokens</h1>
+      <h1 className="table_header">
+        Top Tokens <ArrowPathIcon className="refresh" onClick={() => handleRefresh()} />
+      </h1>
       <div className="table_list">
         <div className="token_grid">
           <span className="md_show left_align text-zinc-300">#</span>

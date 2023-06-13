@@ -29,7 +29,7 @@
     @apply bg-zinc-800 text-white hover:text-white;
   }
   .table_header {
-    @apply text-base text-zinc-300 sm:text-lg;
+    @apply flex items-center justify-between text-base text-zinc-300 sm:text-lg;
   }
   .table_col_header {
     @apply flex cursor-pointer items-center justify-end gap-1 text-zinc-300 hover:text-zinc-500;
@@ -37,11 +37,32 @@
   .table_list {
     @apply flex flex-col gap-4 rounded-lg bg-zinc-900 p-4;
   }
+  .table_pagination {
+    @apply flex items-center justify-center gap-2;
+  }
+  .loading_row {
+    @apply h-6 animate-pulse rounded-full bg-zinc-800;
+  }
+  .refresh {
+    @apply w-7 cursor-pointer rounded-md p-1 hover:bg-zinc-600;
+  }
   .token_grid {
     @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
   }
   .pool_grid {
     @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3.5fr_1fr_1fr_1fr];
+  }
+  .pool_feeTier {
+    @apply rounded-lg bg-zinc-700 p-1 text-white;
+  }
+  .transaction_grid {
+    @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[1.5fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr];
+  }
+  .arrow {
+    @apply w-4 cursor-pointer text-white hover:text-zinc-300;
+  }
+  .disabled_arrow {
+    @apply w-4 cursor-not-allowed text-zinc-600;
   }
   .md_show_flex {
     @apply hidden md:flex;
@@ -60,23 +81,5 @@
   }
   .right_align {
     @apply text-right;
-  }
-  .arrow {
-    @apply w-4 cursor-pointer text-white hover:text-zinc-300;
-  }
-  .disabled_arrow {
-    @apply w-4 cursor-not-allowed text-zinc-600;
-  }
-  .loading_row {
-    @apply h-6 animate-pulse rounded-full bg-zinc-800;
-  }
-  .table_pagination {
-    @apply flex items-center justify-center gap-2;
-  }
-  .pool_feeTier {
-    @apply rounded-lg bg-zinc-700 p-1 text-white;
-  }
-  .transaction_grid {
-    @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[1.5fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr];
   }
 }
