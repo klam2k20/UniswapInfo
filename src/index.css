@@ -17,7 +17,7 @@
     @apply flex items-center justify-center;
   }
   .main_wrapper {
-    @apply mt-16 h-full w-[90%] max-w-[1200px] pt-8;
+    @apply mt-16 flex h-full w-[90%] max-w-[1200px] flex-col gap-4 pt-8;
   }
   .logo {
     @apply w-4 transition-all hover:-rotate-6 sm:w-6;
@@ -39,6 +39,9 @@
   }
   .token_grid {
     @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
+  }
+  .pool_grid {
+    @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3.5fr_1fr_1fr_1fr];
   }
   .md_show_flex {
     @apply hidden md:flex;

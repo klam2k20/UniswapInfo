@@ -15,7 +15,8 @@ const TokenRow = ({ token, index }: ITokenRowProps) => {
         <span className="text-zinc-500">{`(${token.symbol})`}</span>
       </span>
       <span className="md:hidden">{token.symbol}</span>
-      <span className="right_align">{formatPrice(token.priceUSD)}</span>
+      <span className="right_align">{formatPrice(token.tvl)}</span>
+      <span className="lg_show right_align">{formatPrice(token.priceUSD)}</span>
       <span
         className={`lg_show right_align ${
           token.priceChange < 0 ? 'text-red-500' : 'text-green-500'
@@ -23,7 +24,6 @@ const TokenRow = ({ token, index }: ITokenRowProps) => {
         {formatPercentage(token.priceChange)}
       </span>
       <span className="md_show right_align">{formatPrice(token.volumeChange)}</span>
-      <span className="lg_show right_align">{formatPrice(token.tvl)}</span>
     </div>
   );
 };

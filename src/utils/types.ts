@@ -1,12 +1,4 @@
-export type TokenId = {
-  __typename: 'Token';
-  id: string;
-};
-
-export type TokenIdData = {
-  tokens: TokenId[];
-};
-
+/** Block Types */
 export type Block = {
   __typename: 'Block';
   number: string;
@@ -14,6 +6,16 @@ export type Block = {
 
 export type BlockData = {
   blocks: Block[];
+};
+
+/** Token Types */
+export type TokenId = {
+  __typename: 'Token';
+  id: string;
+};
+
+export type TokenIdData = {
+  tokens: TokenId[];
 };
 
 export type TokenDayData = {
@@ -46,15 +48,42 @@ export type FormatToken = {
   volumeChange: number;
 };
 
-export type Icon = {
-  name: string;
-  address: string;
-  symbol: string;
-  logoURI: string;
+/** Pool Types */
+export type PoolId = {
+  __typename: 'Pool';
+  id: string;
 };
 
-export type IconContextType = {
-  getLogoURI: (address: string) => string | undefined;
+export type PoolIdData = {
+  pools: PoolId[];
+};
+
+export type PoolToken = {
+  symbol: string;
+};
+
+export type Pool = {
+  __typename: 'Pool';
+  id: string;
+  token0: PoolToken;
+  token1: PoolToken;
+  feeTier: string;
+  totalValueLockedUSD: string;
+  volumeUSD: string;
+};
+
+export type PoolData = {
+  pools: Pool[];
+};
+
+export type FormatPool = {
+  id: string;
+  token0: string;
+  token1: string;
+  feeTier: number;
+  tvl: number;
+  volumeDailyChange: number;
+  volumeWeeklyChange: number;
 };
 
 export type SortType = {

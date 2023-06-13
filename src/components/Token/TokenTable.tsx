@@ -111,7 +111,7 @@ export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
         const oldPrice = parseFloat(t.tokenDayData[0].priceUSD);
         const oldVolume = parseFloat(t.volumeUSD);
         const priceChange = oldPrice > 0 ? ((token.priceUSD - oldPrice) / oldPrice) * 100 : 0;
-        const volumeChange = oldVolume ? token.volume - oldVolume : token.volume;
+        const volumeChange = oldVolume ? token.volume - oldVolume : 0;
         tokenMap.set(t.id, { ...token, priceChange, volumeChange });
       });
 
@@ -156,11 +156,18 @@ export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
           <span className="md_show left_align text-zinc-300">#</span>
           <span className="left_align text-zinc-300">Name</span>
           <TableColHeader
+            title="TVL"
+            prop="tvl"
+            sort={sort}
+            handleSort={() => handleSort('tvl')}
+            classNames=""
+          />
+          <TableColHeader
             title="Price"
             prop="price"
             sort={sort}
             handleSort={() => handleSort('price')}
-            classNames=""
+            classNames="lg_show_flex"
           />
           <TableColHeader
             title="Price Change"
@@ -170,18 +177,11 @@ export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
             classNames="lg_show_flex"
           />
           <TableColHeader
-            title="Volume (24H)"
-            prop="volume24h"
+            title="Volume (1D)"
+            prop="volumeDailyChange"
             sort={sort}
-            handleSort={() => handleSort('volume24h')}
+            handleSort={() => handleSort('volumeDailyChange')}
             classNames="md_show_flex"
-          />
-          <TableColHeader
-            title="TVL"
-            prop="tvl"
-            sort={sort}
-            handleSort={() => handleSort('tvl')}
-            classNames="lg_show_flex"
           />
         </div>
 

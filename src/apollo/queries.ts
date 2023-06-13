@@ -67,3 +67,59 @@ export const BLOCK_TOKEN_DATA = gql`
     }
   }
 `;
+
+/**
+ * Get top 100 pool ids ranked by TVL(USD)
+ */
+export const TOP_POOL_IDS = gql`
+  query GetPoolIds {
+    pools(first: 100, orderBy: totalValueLockedUSD, orderDirection: desc) {
+      id
+    }
+  }
+`;
+
+/**
+ * Get current top 100 pools ranked by TVL(USD)
+ */
+export const CURRENT_POOL_DATA = gql`
+  query GetCurrentPoolData($poolIds: [String]!) {
+    pools(where: { id_in: $poolIds }, orderBy: totalValueLockedUSD, orderDirection: desc) {
+      id
+      token0 {
+        symbol
+      }
+      token1 {
+        symbol
+      }
+      feeTier
+      totalValueLockedUSD
+      volumeUSD
+    }
+  }
+`;
+
+/**
+ * Get top 100 pools ranked by TVL(USD) for a specific block number
+ */
+export const BLOCK_POOL_DATA = gql`
+  query GetBlockPoolData($poolIds: [String]!, $blockNumber: Int!) {
+    pools(
+      where: { id_in: $poolIds }
+      block: { number: $blockNumber }
+      orderBy: totalValueLockedUSD
+      orderDirection: desc
+    ) {
+      id
+      token0 {
+        symbol
+      }
+      token1 {
+        symbol
+      }
+      feeTier
+      totalValueLockedUSD
+      volumeUSD
+    }
+  }
+`;

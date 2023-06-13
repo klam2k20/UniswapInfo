@@ -1,4 +1,4 @@
-import { FormatToken } from './types';
+import { FormatPool, FormatToken } from './types';
 
 export function formatPrice(price: number) {
   if (price < 0.01) {
@@ -32,13 +32,31 @@ export function sortTokens(tokens: FormatToken[], prop: string, asc: boolean) {
         ? tokens.sort((a, b) => a.priceChange - b.priceChange)
         : tokens.sort((a, b) => b.priceChange - a.priceChange);
       break;
-    case 'volume24h':
+    case 'volumeDailyChange':
       asc
         ? tokens.sort((a, b) => a.volumeChange - b.volumeChange)
         : tokens.sort((a, b) => b.volumeChange - a.volumeChange);
       break;
     default:
       asc ? tokens.sort((a, b) => a.tvl - b.tvl) : tokens.sort((a, b) => b.tvl - a.tvl);
+      break;
+  }
+}
+
+export function sortPools(pools: FormatPool[], prop: string, asc: boolean) {
+  switch (prop) {
+    case 'volumeDailyChange':
+      asc
+        ? pools.sort((a, b) => a.volumeDailyChange - b.volumeDailyChange)
+        : pools.sort((a, b) => b.volumeDailyChange - a.volumeDailyChange);
+      break;
+    case 'volumeWeeklyChange':
+      asc
+        ? pools.sort((a, b) => a.volumeWeeklyChange - b.volumeWeeklyChange)
+        : pools.sort((a, b) => b.volumeWeeklyChange - a.volumeWeeklyChange);
+      break;
+    default:
+      asc ? pools.sort((a, b) => a.tvl - b.tvl) : pools.sort((a, b) => b.tvl - a.tvl);
       break;
   }
 }
