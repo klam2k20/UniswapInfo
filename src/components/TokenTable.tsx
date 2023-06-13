@@ -1,11 +1,13 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
-import { BlockData, FormatToken, TokenData, TokenId, TokenIdData } from '../utils/types';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import TokenRow from './TokenRow';
-import { LoadingList, LoadingPagination } from './LoadingStates';
+import { BlockData, FormatToken, SortType, TokenData, TokenId, TokenIdData } from '../utils/types';
+import { sortTokens } from '../utils/utils';
 import { ErrorList } from './ErrorStates';
+import { LoadingList, LoadingPagination } from './LoadingStates';
+import TableColHeader from './TableColHeader';
+import TokenRow from './TokenRow';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 
@@ -14,6 +16,7 @@ export const TokenTable = () => {
   const [blockNumber, setBlockNumber] = useState<number>();
   const [tokens, setTokens] = useState<FormatToken[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [sort, setSort] = useState<SortType>({ prop: 'tvl', asc: false });
 
   /**
    * Get top 100 tokens ranked by tvl (USD)
@@ -97,13 +100,21 @@ export const TokenTable = () => {
         const oldPrice = parseFloat(t.tokenDayData[0].priceUSD);
         const oldVolume = parseFloat(t.volumeUSD);
         const priceChange = oldPrice > 0 ? ((token.priceUSD - oldPrice) / oldPrice) * 100 : 0;
-        const volumeChange = token.volume - oldVolume;
+        const volumeChange = oldVolume ? token.volume - oldVolume : token.volume;
         tokenMap.set(t.id, { ...token, priceChange, volumeChange });
       });
 
       setTokens(Array.from(tokenMap, ([key, value]) => ({ id: key, ...value })));
     }
   }, [loading, blockTokenLoading, error, blockTokenError, currentTokenData, blockTokenData]);
+
+  /**
+   * Sort tokens based on given property and direction
+   */
+  useEffect(() => {
+    sortTokens(tokens, sort.prop, sort.asc);
+    setTokens([...tokens]);
+  }, [sort]);
 
   /**
    * Handles pagination for the table
@@ -117,6 +128,15 @@ export const TokenTable = () => {
     }
   };
 
+  /**
+   * Handles sorting the tokens based on selected property
+   * @param prop represents the selected property
+   */
+  const handleSort = (prop: string) => {
+    if (prop === sort.prop) setSort({ prop, asc: !sort.asc });
+    else setSort({ prop, asc: false });
+  };
+
   return (
     <section className="flex flex-col gap-4">
       <h1 className="table_header">Top Tokens</h1>
@@ -124,10 +144,34 @@ export const TokenTable = () => {
         <div className="token_grid">
           <span className="md_show left_align text-zinc-300">#</span>
           <span className="left_align text-zinc-300">Name</span>
-          <span className="right_align text-zinc-300">Price</span>
-          <span className="lg_show right_align text-zinc-300">Price Change</span>
-          <span className="md_show right_align text-zinc-300">Volume 24H</span>
-          <span className="lg_show right_align text-zinc-300">TVL</span>
+          <TableColHeader
+            title="Price"
+            prop="price"
+            sort={sort}
+            handleSort={() => handleSort('price')}
+            classNames=""
+          />
+          <TableColHeader
+            title="Price Change"
+            prop="priceChange"
+            sort={sort}
+            handleSort={() => handleSort('priceChange')}
+            classNames="lg_show_flex"
+          />
+          <TableColHeader
+            title="Volume (24H)"
+            prop="volume24h"
+            sort={sort}
+            handleSort={() => handleSort('volume24h')}
+            classNames="md_show_flex"
+          />
+          <TableColHeader
+            title="TVL"
+            prop="tvl"
+            sort={sort}
+            handleSort={() => handleSort('tvl')}
+            classNames="lg_show_flex"
+          />
         </div>
 
         {/* Loading States */}

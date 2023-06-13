@@ -45,3 +45,19 @@ export type FormatToken = {
   priceChange: number;
   volumeChange: number;
 };
+
+export type Icon = {
+  name: string;
+  address: string;
+  symbol: string;
+  logoURI: string;
+};
+
+export type IconContextType = {
+  getLogoURI: (address: string) => string | undefined;
+};
+
+export type SortType = {
+  prop: string;
+  asc: boolean;
+};

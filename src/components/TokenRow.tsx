@@ -8,10 +8,6 @@ interface ITokenRowProps {
 }
 
 const TokenRow: React.FunctionComponent<ITokenRowProps> = ({ token, index }) => {
-  const priceChange = token.priceChange ? formatPercentage(token.priceChange) : formatPercentage(0);
-  const volumeChange = token.volumeChange
-    ? formatPrice(token.volumeChange)
-    : formatPrice(token.volume);
   return (
     <div className="token_grid">
       <span className="md_show left_align">{index}</span>
@@ -25,9 +21,9 @@ const TokenRow: React.FunctionComponent<ITokenRowProps> = ({ token, index }) => 
         className={`lg_show right_align ${
           token.priceChange < 0 ? 'text-red-500' : 'text-green-500'
         }`}>
-        {priceChange}
+        {formatPercentage(token.priceChange)}
       </span>
-      <span className="md_show right_align">{volumeChange}</span>
+      <span className="md_show right_align">{formatPrice(token.volumeChange)}</span>
       <span className="lg_show right_align">{formatPrice(token.tvl)}</span>
     </div>
   );
