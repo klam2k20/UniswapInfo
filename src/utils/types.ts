@@ -93,12 +93,17 @@ export type TransactionType = {
 export type Transaction = {
   id: string;
   timestamp: string;
-  mints: TransactionType;
-  burns: TransactionType;
-  swaps: TransactionType;
+  mints: TransactionType[];
+  burns: TransactionType[];
+  swaps: TransactionType[];
+};
+
+export type TransactionData = {
+  transactions: Transaction[];
 };
 
 export type FormatTransaction = {
+  id: string;
   type: string;
   token0: string;
   token1: string;
@@ -106,7 +111,7 @@ export type FormatTransaction = {
   amount1: number;
   amountUSD: number;
   origin: string;
-  time: bigint;
+  time: number;
 };
 
 /** Class Types */

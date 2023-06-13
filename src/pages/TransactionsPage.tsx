@@ -1,5 +1,7 @@
+import { TransactionTable } from '../components/Transaction/TransactionTable';
+
 const TransactionsPage = () => {
-  return <h1 className="text-3xl text-blue-500">Transactions Page</h1>;
+  return <TransactionTable limitPerPage={25} />;
 };
 
 export default TransactionsPage;

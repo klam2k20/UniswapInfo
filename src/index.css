@@ -38,10 +38,10 @@
     @apply flex flex-col gap-4 rounded-lg bg-zinc-900 p-4;
   }
   .token_grid {
-    @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
+    @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3fr_1fr_1fr_1fr_1fr];
   }
   .pool_grid {
-    @apply grid grid-cols-2 items-center gap-4 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3.5fr_1fr_1fr_1fr];
+    @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[24px_1.5fr_1fr_1fr] lg:grid-cols-[24px_3.5fr_1fr_1fr_1fr];
   }
   .md_show_flex {
     @apply hidden md:flex;
@@ -75,5 +75,8 @@
   }
   .pool_feeTier {
     @apply rounded-lg bg-zinc-700 p-1 text-white;
+  }
+  .transaction_grid {
+    @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[1.5fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr];
   }
 }
