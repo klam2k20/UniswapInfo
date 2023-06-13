@@ -11,7 +11,11 @@ import TokenRow from './TokenRow';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);
 
-export const TokenTable = () => {
+interface ITokenTableProps {
+  limitPerPage: number;
+}
+
+export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const [blockNumber, setBlockNumber] = useState<number>();
   const [tokens, setTokens] = useState<FormatToken[]>([]);
@@ -123,7 +127,7 @@ export const TokenTable = () => {
   const handlePage = (dir: string) => {
     if (dir === 'left' && page > 1) {
       setPage((prev) => prev - 1);
-    } else if (dir === 'right' && page < Math.ceil(tokens.length / 10)) {
+    } else if (dir === 'right' && page < Math.ceil(tokens.length / limitPerPage)) {
       setPage((prev) => prev + 1);
     }
   };
@@ -177,7 +181,7 @@ export const TokenTable = () => {
         {/* Loading States */}
         {(tokenIdLoading || blockNumberLoading || loading || blockTokenLoading) && (
           <>
-            <LoadingList />
+            <LoadingList limitPerPage={limitPerPage} type="token" />
             <LoadingPagination />
           </>
         )}
@@ -194,8 +198,8 @@ export const TokenTable = () => {
           !error &&
           !blockTokenError && (
             <>
-              {tokens.slice((page - 1) * 10, page * 10).map((t, i) => (
-                <TokenRow key={t.id} token={t} index={(page - 1) * 10 + i + 1} />
+              {tokens.slice((page - 1) * limitPerPage, page * limitPerPage).map((t, i) => (
+                <TokenRow key={t.id} token={t} index={(page - 1) * limitPerPage + i + 1} />
               ))}
 
               <div className="table_pagination">
@@ -203,9 +207,11 @@ export const TokenTable = () => {
                   className={page === 1 ? 'disabled_arrow' : 'arrow'}
                   onClick={() => handlePage('left')}
                 />
-                {`Page ${page} of ${Math.ceil(tokens.length / 10)}`}
+                {`Page ${page} of ${Math.ceil(tokens.length / limitPerPage)}`}
                 <ArrowRightIcon
-                  className={page === Math.ceil(tokens.length / 10) ? 'disabled_arrow' : 'arrow'}
+                  className={
+                    page === Math.ceil(tokens.length / limitPerPage) ? 'disabled_arrow' : 'arrow'
+                  }
                   onClick={() => handlePage('right')}
                 />
               </div>

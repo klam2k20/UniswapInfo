@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormatToken } from '../utils/types';
 import { formatPercentage, formatPrice } from '../utils/utils';
 
@@ -7,7 +6,7 @@ interface ITokenRowProps {
   index: number;
 }
 
-const TokenRow: React.FunctionComponent<ITokenRowProps> = ({ token, index }) => {
+const TokenRow = ({ token, index }: ITokenRowProps) => {
   return (
     <div className="token_grid">
       <span className="md_show left_align">{index}</span>

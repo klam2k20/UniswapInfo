@@ -1,4 +1,4 @@
-const TransactionsPage: React.FC = () => {
+const TransactionsPage = () => {
   return <h1 className="text-3xl text-blue-500">Transactions Page</h1>;
 };
 

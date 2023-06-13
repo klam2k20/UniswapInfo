@@ -1,5 +1,4 @@
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
-import * as React from 'react';
 
 interface ITableColHeaderProps {
   title: string;
@@ -9,13 +8,7 @@ interface ITableColHeaderProps {
   classNames: string;
 }
 
-const TableColHeader: React.FC<ITableColHeaderProps> = ({
-  title,
-  prop,
-  sort,
-  handleSort,
-  classNames
-}) => {
+const TableColHeader = ({ title, prop, sort, handleSort, classNames }: ITableColHeaderProps) => {
   return (
     <span className={`table_col_header ${classNames}`} onClick={() => handleSort()}>
       {sort.prop === prop && sort.asc && <ArrowUpIcon className="w-4" />}

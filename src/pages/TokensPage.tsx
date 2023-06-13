@@ -1,5 +1,7 @@
-const TokensPage: React.FC = () => {
-  return <h1 className="text-3xl text-blue-500">Tokens Page</h1>;
+import { TokenTable } from '../components/TokenTable';
+
+const TokensPage = () => {
+  return <TokenTable limitPerPage={20} />;
 };
 
 export default TokensPage;

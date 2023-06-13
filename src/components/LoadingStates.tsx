@@ -1,22 +1,20 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
+interface ILoadingListProps {
+  limitPerPage: number;
+  type: string;
+}
+
 export const LoadingRow = () => {
   return <div className="loading_row" />;
 };
 
-export const LoadingList = () => {
+export const LoadingList = ({ limitPerPage, type }: ILoadingListProps) => {
   return (
     <>
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
-      <LoadingRow />
+      {Array.from({ length: limitPerPage }, (_, index) => (
+        <LoadingRow key={type + index} />
+      ))}
     </>
   );
 };
