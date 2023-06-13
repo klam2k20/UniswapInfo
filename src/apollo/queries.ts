@@ -123,3 +123,51 @@ export const BLOCK_POOL_DATA = gql`
     }
   }
 `;
+
+/**
+ * Get the 500 most recent transactions
+ */
+export const TRANSACTION_DATA = gql`
+  query GetTransactionData {
+    transactions(first: 500, orderBy: timestamp, orderDirection: desc) {
+      id
+      timestamp
+      mints {
+        origin
+        token0 {
+          symbol
+        }
+        token1 {
+          symbol
+        }
+        amount0
+        amount1
+        amountUSD
+      }
+      burns {
+        origin
+        token0 {
+          symbol
+        }
+        token1 {
+          symbol
+        }
+        amount0
+        amount1
+        amountUSD
+      }
+      swaps {
+        origin
+        token0 {
+          symbol
+        }
+        token1 {
+          symbol
+        }
+        amount0
+        amount1
+        amountUSD
+      }
+    }
+  }
+`;

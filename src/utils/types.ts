@@ -1,6 +1,5 @@
 /** Block Types */
 export type Block = {
-  __typename: 'Block';
   number: string;
 };
 
@@ -10,7 +9,6 @@ export type BlockData = {
 
 /** Token Types */
 export type TokenId = {
-  __typename: 'Token';
   id: string;
 };
 
@@ -19,12 +17,10 @@ export type TokenIdData = {
 };
 
 export type TokenDayData = {
-  __typename: 'TokenDayData';
   priceUSD: string;
 };
 
 export type Token = {
-  __typename: 'Token';
   id: string;
   name: string;
   symbol: string;
@@ -48,9 +44,12 @@ export type FormatToken = {
   volumeChange: number;
 };
 
+export type TokenSymbol = {
+  symbol: string;
+};
+
 /** Pool Types */
 export type PoolId = {
-  __typename: 'Pool';
   id: string;
 };
 
@@ -58,15 +57,10 @@ export type PoolIdData = {
   pools: PoolId[];
 };
 
-export type PoolToken = {
-  symbol: string;
-};
-
 export type Pool = {
-  __typename: 'Pool';
   id: string;
-  token0: PoolToken;
-  token1: PoolToken;
+  token0: TokenSymbol;
+  token1: TokenSymbol;
   feeTier: string;
   totalValueLockedUSD: string;
   volumeUSD: string;
@@ -86,6 +80,36 @@ export type FormatPool = {
   volumeWeeklyChange: number;
 };
 
+/** Transaction Types */
+export type TransactionType = {
+  origin: string;
+  token0: TokenSymbol;
+  token1: TokenSymbol;
+  amount0: string;
+  amount1: string;
+  amountUSD: string;
+};
+
+export type Transaction = {
+  id: string;
+  timestamp: string;
+  mints: TransactionType;
+  burns: TransactionType;
+  swaps: TransactionType;
+};
+
+export type FormatTransaction = {
+  type: string;
+  token0: string;
+  token1: string;
+  amount0: number;
+  amount1: number;
+  amountUSD: number;
+  origin: string;
+  time: bigint;
+};
+
+/** Class Types */
 export type SortType = {
   prop: string;
   asc: boolean;
