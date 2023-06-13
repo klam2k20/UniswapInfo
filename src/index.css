@@ -73,4 +73,7 @@
   .table_pagination {
     @apply flex items-center justify-center gap-2;
   }
+  .pool_feeTier {
+    @apply rounded-lg bg-zinc-700 p-1 text-white;
+  }
 }

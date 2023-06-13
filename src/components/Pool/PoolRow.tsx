@@ -1,5 +1,5 @@
 import { FormatPool } from '../../utils/types';
-import { formatPrice } from '../../utils/utils';
+import { formatPercentage, formatPrice } from '../../utils/utils';
 
 interface IPoolRowProps {
   pool: FormatPool;
@@ -12,7 +12,7 @@ const PoolRow = ({ pool, index }: IPoolRowProps) => {
       <span className="md_show left_align">{index}</span>
       <span className="left_align md_show">
         <span>{`${pool.token0}/${pool.token1} `}</span>
-        <span className="pool_feeTier">{`(${pool.feeTier})`}</span>
+        <span className="pool_feeTier">{formatPercentage(pool.feeTier)}</span>
       </span>
       <span className="md:hidden">{`${pool.token0}/${pool.token1}`}</span>
       <span className="right_align">{formatPrice(pool.tvl)}</span>
