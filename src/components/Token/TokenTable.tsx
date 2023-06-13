@@ -1,12 +1,19 @@
 import { useLazyQuery, useQuery } from '@apollo/client';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
-import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../apollo/queries';
-import { BlockData, FormatToken, SortType, TokenData, TokenId, TokenIdData } from '../utils/types';
-import { sortTokens } from '../utils/utils';
-import { ErrorList } from './ErrorStates';
-import { LoadingList, LoadingPagination } from './LoadingStates';
-import TableColHeader from './TableColHeader';
+import { BLOCK, BLOCK_TOKEN_DATA, CURRENT_TOKEN_DATA, TOP_TOKEN_IDS } from '../../apollo/queries';
+import {
+  BlockData,
+  FormatToken,
+  SortType,
+  TokenData,
+  TokenId,
+  TokenIdData
+} from '../../utils/types';
+import { sortTokens } from '../../utils/utils';
+import { ErrorList } from '../ErrorStates';
+import { LoadingList, LoadingPagination } from '../LoadingStates';
+import TableColHeader from '../TableColHeader';
 import TokenRow from './TokenRow';
 
 const DAY_AGO = Math.floor((Date.now() - 86400000) / 1000);

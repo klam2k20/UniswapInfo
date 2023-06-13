@@ -1,5 +1,5 @@
-import { FormatToken } from '../utils/types';
-import { formatPercentage, formatPrice } from '../utils/utils';
+import { FormatToken } from '../../utils/types';
+import { formatPercentage, formatPrice } from '../../utils/utils';
 
 interface ITokenRowProps {
   token: FormatToken;
