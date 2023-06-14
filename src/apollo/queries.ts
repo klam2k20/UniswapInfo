@@ -171,3 +171,23 @@ export const TRANSACTION_DATA = gql`
     }
   }
 `;
+
+/**
+ * Get day date for a specified token
+ */
+export const TOKEN_DAY_DATA = gql`
+  query GetTokenDayData($tokenId: String!, $timestamp: Int!) {
+    tokenDayDatas(
+      where: { token: $tokenId, date_gt: $timestamp }
+      first: 1000
+      orderBy: date
+      orderDirection: asc
+      subgraphError: allow
+    ) {
+      date
+      volumeUSD
+      totalValueLockedUSD
+      priceUSD
+    }
+  }
+`;

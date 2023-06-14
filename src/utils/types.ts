@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 /** Block Types */
 export type Block = {
   number: string;
@@ -16,8 +18,12 @@ export type TokenIdData = {
   tokens: TokenId[];
 };
 
-export type TokenDayData = {
+export type TokenPriceData = {
   priceUSD: string;
+};
+
+export type TokenSymbol = {
+  symbol: string;
 };
 
 export type Token = {
@@ -26,7 +32,7 @@ export type Token = {
   symbol: string;
   totalValueLockedUSD: string;
   volumeUSD: string;
-  tokenDayData: TokenDayData[];
+  tokenDayData: TokenPriceData[];
 };
 
 export type TokenData = {
@@ -44,8 +50,22 @@ export type FormatToken = {
   volumeChange: number;
 };
 
-export type TokenSymbol = {
-  symbol: string;
+export type TokenDay = {
+  date: string;
+  volumeUSD: string;
+  totalValueLockedUSD: string;
+  priceUSD: string;
+};
+
+export type TokenDayData = {
+  tokenDayDatas: TokenDay[];
+};
+
+export type FormatTokenDay = {
+  date: number;
+  volumeUSD: number;
+  totalValueLockedUSD: number;
+  priceUSD: number;
 };
 
 /** Pool Types */
@@ -118,4 +138,9 @@ export type FormatTransaction = {
 export type SortType = {
   prop: string;
   asc: boolean;
+};
+
+export type ChartPoint = {
+  date: number;
+  value: number;
 };

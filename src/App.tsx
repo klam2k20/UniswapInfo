@@ -4,6 +4,7 @@ import TokensPage from './pages/TokensPage';
 import PoolsPage from './pages/PoolsPage';
 import TransactionsPage from './pages/TransactionsPage';
 import NavHeader from './components/NavHeader';
+import TokenPage from './pages/TokenPage';
 
 function App() {
   /**
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/tokens" element={<TokensPage />} />
+          <Route path="/token/:tokenId" element={<TokenPage />} />
           <Route path="/pools" element={<PoolsPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
         </Route>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FormatToken } from '../../utils/types';
 import { formatPercentage, formatPrice } from '../../utils/utils';
 
@@ -8,7 +9,10 @@ interface ITokenRowProps {
 
 const TokenRow = ({ token, index }: ITokenRowProps) => {
   return (
-    <div className="token_grid">
+    <Link
+      to={`/token/${token.id}`}
+      state={{ id: token.id, name: token.name, symbol: token.symbol }}
+      className="token_grid">
       <span className="md_show left_align">{index}</span>
       <span className="left_align md_show">
         <span>{`${token.name} `}</span>
@@ -24,7 +28,7 @@ const TokenRow = ({ token, index }: ITokenRowProps) => {
         {formatPercentage(token.priceChange)}
       </span>
       <span className="md_show right_align">{formatPrice(token.volumeChange)}</span>
-    </div>
+    </Link>
   );
 };
 

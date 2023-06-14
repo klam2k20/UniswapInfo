@@ -58,6 +58,12 @@
   .transaction_grid {
     @apply grid grid-cols-2 items-center gap-4 hover:opacity-75 md:grid-cols-[1.5fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr_1fr];
   }
+  .chart_wrapper {
+    @apply flex min-h-[75vh] basis-3/4 rounded-lg bg-zinc-900 p-4;
+  }
+  .card {
+    @apply flex basis-1/4 flex-col gap-4 rounded-lg bg-zinc-900 p-4;
+  }
   .arrow {
     @apply w-4 cursor-pointer text-white hover:text-zinc-300;
   }
@@ -81,5 +87,11 @@
   }
   .right_align {
     @apply text-right;
+  }
+  .opacity_75 {
+    @apply transition-all hover:opacity-75;
+  }
+  .underline_offset {
+    @apply underline underline-offset-4;
   }
 }

@@ -21,7 +21,7 @@ export function TransactionTable({ limitPerPage }: ITransactionTableProps) {
   /**
    * Get transaction data
    */
-  const [getTransactionData, { loading, error, data, refetch }] = useLazyQuery<TransactionData>(
+  const [getTransactionData, { loading, error, data }] = useLazyQuery<TransactionData>(
     TRANSACTION_DATA,
     {
       context: { clientName: 'uniswap' }
