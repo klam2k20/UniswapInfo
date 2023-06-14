@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="frontend/public/overview.gif" height="500">
+    <img src="gifs/overview.gif" height="500">
 </p>
 
 ## Overview
@@ -16,32 +16,32 @@ The Uniswap Data Explorer is a responsive React application designed to query an
 
 - Responsive Design
 <p align="center">
-    <img src="frontend/public/responsive.gif" height="400">
+    <img src="gifs/responsive.gif" height="400">
 </p>
 
 - Sorting Functionality
 <p align="center">
-    <img src="frontend/public/sort.gif" height="400">
+    <img src="gifs/sort.gif" height="400">
 </p>
 
 - Pagination
 <p align="center">
-    <img src="frontend/public/pagination.gif" height="400">
+    <img src="gifs/pagination.gif" height="400">
 </p>
 
 - Graphical Formats
 <p align="center">
-    <img src="frontend/public/chart.gif" height="400">
+    <img src="gifs/chart.gif" height="400">
 </p>
 
 - Refresh Capabilitiy
 <p align="center">
-    <img src="frontend/public/refresh.gif" height="400">
+    <img src="gifs/refresh.gif" height="400">
 </p>
 
 - Link Transactions to Etherscan
 <p align="center">
-    <img src="frontend/public/etherscan.gif" height="400">
+    <img src="gifs/etherscan.gif" height="400">
 </p>
 
 ## Getting Started
