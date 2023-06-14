@@ -28,3 +28,11 @@ export const LoadingPagination = () => {
     </div>
   );
 };
+
+export const LoadingCard = () => {
+  return <article className="card animate-pulse bg-zinc-950" />;
+};
+
+export const LoadingChart = () => {
+  return <article className="chart_wrapper animate-pulse bg-zinc-950" />;
+};

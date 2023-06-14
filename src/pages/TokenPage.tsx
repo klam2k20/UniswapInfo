@@ -6,6 +6,7 @@ import { TOKEN_DAY_DATA } from '../apollo/queries';
 import { AreaChartWrapper, LineChartWrapper } from '../components/Charts/LineChart';
 import { ChartPoint, FormatTokenDay, TokenDayData } from '../utils/types';
 import { TokenCard } from '../components/Token/TokenCard';
+import { LoadingCard, LoadingChart } from '../components/LoadingStates';
 
 const YEAR_AGO = dayjs().subtract(1, 'y').unix();
 
@@ -28,14 +29,17 @@ const TokenPage = () => {
    * Organize token day data into TVL, volume and price charts
    */
   useEffect(() => {
-    if (!loading && !error && data && data.tokenDayDatas.length > 0) {
-      const lastInx = data.tokenDayDatas.length - 1;
-      const current = {
-        date: parseInt(data.tokenDayDatas[lastInx].date) * 1000,
-        volumeUSD: parseFloat(data.tokenDayDatas[lastInx].volumeUSD),
-        totalValueLockedUSD: parseFloat(data.tokenDayDatas[lastInx].totalValueLockedUSD),
-        priceUSD: parseFloat(data.tokenDayDatas[lastInx].priceUSD)
-      };
+    if (!loading && !error && data) {
+      let current;
+      if (data.tokenDayDatas.length > 0) {
+        const lastInx = data.tokenDayDatas.length - 1;
+        current = {
+          date: parseInt(data.tokenDayDatas[lastInx].date) * 1000,
+          volumeUSD: parseFloat(data.tokenDayDatas[lastInx].volumeUSD),
+          totalValueLockedUSD: parseFloat(data.tokenDayDatas[lastInx].totalValueLockedUSD),
+          priceUSD: parseFloat(data.tokenDayDatas[lastInx].priceUSD)
+        };
+      }
       const volume = data.tokenDayDatas.map((t) => ({
         date: parseInt(t.date) * 1000,
         value: parseFloat(t.volumeUSD)
@@ -81,10 +85,16 @@ const TokenPage = () => {
         <span className="text-lg">{`${name} (${symbol})`}</span>
       </div>
       <section className="flex flex-col gap-4 lg:flex-row">
-        {!loading && !error && current && chartData && (
+        {loading && (
+          <>
+            <LoadingCard />
+            <LoadingChart />
+          </>
+        )}
+        {!loading && !error && chartData && (
           <>
             <TokenCard data={current} />
-            <article className="chart_wrapper relative w-full overflow-hidden">
+            <article className="chart_wrapper relative overflow-hidden">
               <div className="absolute right-4 top-4 z-10 flex gap-2">
                 <span
                   className={`opacity_75 cursor-pointer ${
