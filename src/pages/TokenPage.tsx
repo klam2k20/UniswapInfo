@@ -80,11 +80,11 @@ const TokenPage = () => {
         </Link>
         <span className="text-lg">{`${name} (${symbol})`}</span>
       </div>
-      <section className="flex gap-4">
+      <section className="flex flex-col gap-4 lg:flex-row">
         {!loading && !error && current && chartData && (
           <>
             <TokenCard data={current} />
-            <article className="chart_wrapper relative">
+            <article className="chart_wrapper relative w-full overflow-hidden py-10">
               <div className="absolute right-4 top-4 z-10 flex gap-2">
                 <span
                   className={`opacity_75 cursor-pointer ${

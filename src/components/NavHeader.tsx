@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FaceSmileIcon } from '@heroicons/react/24/outline';
 
 const NavHeader = () => {
   const [selected, setSelected] = useState<string>('overview');
@@ -20,7 +21,7 @@ const NavHeader = () => {
   return (
     <header>
       <Link to="/">
-        <img className="logo" src="uniswap_logo.svg" alt="Uniswap Logo" />
+        <FaceSmileIcon className="logo" />
       </Link>
 
       <div className="flex items-center justify-center transition-all sm:gap-1">

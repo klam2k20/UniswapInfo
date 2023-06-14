@@ -20,7 +20,7 @@
     @apply my-16 flex h-full w-[90%] max-w-[1200px] flex-col gap-4 pt-8;
   }
   .logo {
-    @apply w-4 transition-all hover:-rotate-6 sm:w-6;
+    @apply w-6 transition-all hover:-rotate-180 sm:w-6;
   }
   .nav_link {
     @apply cursor-pointer flex-row rounded-md px-2 py-1 text-xs text-zinc-500 transition-all hover:text-zinc-200 sm:rounded-lg sm:px-3 sm:py-2 sm:text-base;
