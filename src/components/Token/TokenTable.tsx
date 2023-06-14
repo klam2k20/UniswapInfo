@@ -221,11 +221,13 @@ const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
 
               <div className="table_pagination">
                 <ArrowLeftIcon
+                  data-testid="token-right-left"
                   className={page === 1 ? 'disabled_arrow' : 'arrow'}
                   onClick={() => handlePage('left')}
                 />
                 {`Page ${page} of ${Math.ceil(tokens.length / limitPerPage)}`}
                 <ArrowRightIcon
+                  data-testid="token-right-arrow"
                   className={
                     page === Math.ceil(tokens.length / limitPerPage) ? 'disabled_arrow' : 'arrow'
                   }

@@ -183,11 +183,13 @@ const TransactionTable = ({ limitPerPage }: ITransactionTableProps) => {
 
             <div className="table_pagination">
               <ArrowLeftIcon
+                data-testid="transaction-left-arrow"
                 className={page === 1 ? 'disabled_arrow' : 'arrow'}
                 onClick={() => handlePage('left')}
               />
               {`Page ${page} of ${Math.ceil(transactions.length / limitPerPage)}`}
               <ArrowRightIcon
+                data-testid="transaction-right-arrow"
                 className={
                   page === Math.ceil(transactions.length / limitPerPage)
                     ? 'disabled_arrow'

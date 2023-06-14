@@ -281,11 +281,13 @@ const PoolTable = ({ limitPerPage }: IPoolTableProps) => {
 
               <div className="table_pagination">
                 <ArrowLeftIcon
+                  data-testid="pool-left-arrow"
                   className={page === 1 ? 'disabled_arrow' : 'arrow'}
                   onClick={() => handlePage('left')}
                 />
                 {`Page ${page} of ${Math.ceil(pools.length / limitPerPage)}`}
                 <ArrowRightIcon
+                  data-testid="pool-right-arrow"
                   className={
                     page === Math.ceil(pools.length / limitPerPage) ? 'disabled_arrow' : 'arrow'
                   }
