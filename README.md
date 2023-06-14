@@ -53,7 +53,7 @@ The Uniswap Data Explorer is a responsive React application designed to query an
 ### Installation
 
 ```sh
-git clone https://github.com/klam2k20/Pulse.git
+git clone https://github.com/klam2k20/UniswapInfo.git
 
 cd frontend
 
