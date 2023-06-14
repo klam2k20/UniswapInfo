@@ -64,3 +64,7 @@ npm install
 # Start the application
 npm run start
 ```
+
+## Acknowledgements
+
+Special thanks to the Uniswap team for their incredible work in building and maintaining the Uniswap protocol, as well as the community contributors who have helped improve this project.
