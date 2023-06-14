@@ -11,6 +11,7 @@ The Uniswap Data Explorer is a responsive React application designed to query an
 - <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 - <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white">
 - <img src="https://img.shields.io/badge/Apollo%20GraphQL-311C87?&style=for-the-badge&logo=Apollo%20GraphQL&logoColor=white">
+- <img src="https://img.shields.io/badge/Recharts-38B2AC?style=for-the-badge&logoColor=white">
 
 ## Features
 
