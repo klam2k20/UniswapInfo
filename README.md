@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+<p align="center">
+    <img src="frontend/public/overview.gif" height="500">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Uniswap Data Explorer is a responsive React application designed to query and display data from the Uniswap subgraph v3. This powerful tool provides valuable insights into the Uniswap ecosystem by showcasing information about the top tokens, pools, and most recent transactions in both tabular and graphical formats.
 
-In the project directory, you can run:
+## Technology
 
-### `npm start`
+- <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+- <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white">
+- <img src="https://img.shields.io/badge/Apollo%20GraphQL-311C87?&style=for-the-badge&logo=Apollo%20GraphQL&logoColor=white">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Responsive Design
+<p align="center">
+    <img src="frontend/public/responsive.gif" height="400">
+</p>
 
-### `npm test`
+- Sorting Functionality
+<p align="center">
+    <img src="frontend/public/sort.gif" height="400">
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Pagination
+<p align="center">
+    <img src="frontend/public/pagination.gif" height="400">
+</p>
 
-### `npm run build`
+- Graphical Formats
+<p align="center">
+    <img src="frontend/public/chart.gif" height="400">
+</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Refresh Capabilitiy
+<p align="center">
+    <img src="frontend/public/refresh.gif" height="400">
+</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Link Transactions to Etherscan
+<p align="center">
+    <img src="frontend/public/etherscan.gif" height="400">
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- yarn/npm
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+git clone https://github.com/klam2k20/Pulse.git
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+cd frontend
 
-## Learn More
+# Install dependencies
+npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Start the application
+npm run start
+```
