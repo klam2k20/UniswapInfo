@@ -24,7 +24,7 @@ export const TokenCard = ({ data }: ITokenCardProps) => {
           </div>
         </>
       ) : (
-        <div className="flex h-full items-center justify-center text-xl">No Token Data</div>
+        <h1 className="flex h-full items-center justify-center text-xl">No Token Data</h1>
       )}
     </article>
   );

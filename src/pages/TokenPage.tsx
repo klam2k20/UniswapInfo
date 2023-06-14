@@ -7,6 +7,7 @@ import { AreaChartWrapper, LineChartWrapper } from '../components/Charts/LineCha
 import { ChartPoint, FormatTokenDay, TokenDayData } from '../utils/types';
 import { TokenCard } from '../components/Token/TokenCard';
 import { LoadingCard, LoadingChart } from '../components/LoadingStates';
+import { ErrorCard, ErrorChart } from '../components/ErrorStates';
 
 const YEAR_AGO = dayjs().subtract(1, 'y').unix();
 
@@ -85,12 +86,22 @@ const TokenPage = () => {
         <span className="text-lg">{`${name} (${symbol})`}</span>
       </div>
       <section className="flex flex-col gap-4 lg:flex-row">
+        {/* Loading State */}
         {loading && (
           <>
             <LoadingCard />
             <LoadingChart />
           </>
         )}
+
+        {/* Error State */}
+        {error && (
+          <>
+            <ErrorCard />
+            <ErrorChart />
+          </>
+        )}
+
         {!loading && !error && chartData && (
           <>
             <TokenCard data={current} />
