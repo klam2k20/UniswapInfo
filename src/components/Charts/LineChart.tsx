@@ -27,7 +27,7 @@ const CustomTooltip = ({ payload, label, active }: TooltipProps<ValueType, NameT
     const formatValue = formatPrice(payload[0].value as number);
     return (
       <div className="bg-transparent">
-        <p className="text-2xl font-semibold">{formatValue}</p>
+        <p className="text-lg font-semibold md:text-2xl">{formatValue}</p>
         <p className="text-sm">{`${dayjs(label).format('MMM D, YYYY')} `}</p>
       </div>
     );
@@ -39,11 +39,11 @@ const CustomPriceRatioTooltip = ({ payload, label, active }: TooltipProps<ValueT
   if (active && payload && payload.length > 1) {
     return (
       <div className="bg-transparent">
-        <p className="text-xl font-semibold">{`1 ${payload[0].name} = ${formatNumber(
+        <p className="text-md font-semibold md:text-lg">{`1 ${payload[0].name} = ${formatNumber(
           payload[1].value as number,
           5
         )} ${payload[1].name}`}</p>
-        <p className="text-xl font-semibold">{`1 ${payload[1].name} = ${formatNumber(
+        <p className="text-md font-semibold md:text-lg">{`1 ${payload[1].name} = ${formatNumber(
           payload[0].value as number,
           5
         )} ${payload[0].name}`}</p>

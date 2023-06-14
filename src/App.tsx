@@ -8,17 +8,6 @@ import TokensPage from './pages/TokensPage';
 import TransactionsPage from './pages/TransactionsPage';
 
 function App() {
-  /**
-   * Token Table, Pool Table, Transaction Table, Graphs, Stats Card Components
-   * Router on index: Token ID, Pool ID
-   * Overall, Token, Pool, Transaction, Token ID, Pool ID Page
-   *  - Overall Page: Token, Pool, Transaction Table
-   *  - Token: Token Table
-   *    - Token ID: Stats Card, Graphs, Pool Table, Transaction Table
-   *  - Pool: Pool Table
-   *    - Pool ID: Stats Card, Graphs, Transaction Table
-   *  - Transaction: Transaction Table
-   */
   return (
     <>
       <Routes>
