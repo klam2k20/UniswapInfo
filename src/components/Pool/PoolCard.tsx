@@ -23,7 +23,7 @@ const PoolCard = ({ data }: IPoolCardProps) => {
             <span className="text-xl ">{formatPrice(data.volumeUSD)}</span>
           </div>
           <div className="flex flex-col items-end justify-start lg:items-start">
-            <span className="text-md font-light">Price Ratio</span>
+            <span className="text-md font-light">Token Ratio</span>
             <span className="text-xl">{`1 ${data.token0} = ${formatNumber(data.token1Price, 5)} ${
               data.token1
             }`}</span>

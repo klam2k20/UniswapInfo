@@ -17,7 +17,7 @@ const PoolPage = () => {
   const [current, setCurrent] = useState<FormatPoolDay>();
   const [volumeData, setVolumeData] = useState<ChartPoint[]>([]);
   const [tvlData, setTvlData] = useState<ChartPoint[]>([]);
-  const [priceData, setPriceData] = useState<TwoLineChartPoint[]>([]);
+  const [tokenRatioData, setTokenRatioData] = useState<TwoLineChartPoint[]>([]);
   const [selectedChart, setSelectedChart] = useState('');
   const [chartData, setChartData] = useState<ChartPoint[] | TwoLineChartPoint[]>();
 
@@ -27,7 +27,7 @@ const PoolPage = () => {
   });
 
   /**
-   * Organize pool day data into TVL, volume and price charts
+   * Organize pool day data into TVL, volume and token ratio charts
    */
   useEffect(() => {
     if (!loading && !error && data) {
@@ -52,7 +52,7 @@ const PoolPage = () => {
         date: parseInt(p.date) * 1000,
         value: parseFloat(p.tvlUSD)
       }));
-      const price = data.poolDayDatas.map((p) => ({
+      const tokenRatio = data.poolDayDatas.map((p) => ({
         date: parseInt(p.date) * 1000,
         name1: token0,
         line1: parseFloat(p.token0Price),
@@ -61,7 +61,7 @@ const PoolPage = () => {
       }));
       setVolumeData(volume);
       setTvlData(tvl);
-      setPriceData(price);
+      setTokenRatioData(tokenRatio);
       setCurrent(current);
       setSelectedChart('tvl');
       setChartData(tvlData);
@@ -73,7 +73,7 @@ const PoolPage = () => {
       ? setChartData(tvlData)
       : selectedChart === 'volume'
       ? setChartData(volumeData)
-      : setChartData(priceData);
+      : setChartData(tokenRatioData);
   }, [selectedChart]);
 
   const handleSelectChart = (type: string) => {
@@ -129,13 +129,13 @@ const PoolPage = () => {
                 </span>
                 <span
                   className={`opacity_75 cursor-pointer ${
-                    selectedChart === 'price' ? 'underline_offset' : ''
+                    selectedChart === 'tokenRatio' ? 'underline_offset' : ''
                   }`}
-                  onClick={() => handleSelectChart('price')}>
-                  Price Ratio
+                  onClick={() => handleSelectChart('tokenRatio')}>
+                  Token Ratio
                 </span>
               </div>
-              {selectedChart === 'price' ? (
+              {selectedChart === 'tokenRatio' ? (
                 <TwoLineChartWrapper data={chartData as TwoLineChartPoint[]} />
               ) : (
                 <AreaChartWrapper data={chartData as ChartPoint[]} />
