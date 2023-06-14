@@ -1,4 +1,4 @@
-import { PoolTable } from '../components/Pool/PoolTable';
+import PoolTable from '../components/Pool/PoolTable';
 
 const PoolsPage = () => {
   return <PoolTable limitPerPage={20} />;

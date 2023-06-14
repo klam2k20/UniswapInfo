@@ -5,7 +5,7 @@ interface ITokenCardProps {
   data: FormatTokenDay | undefined;
 }
 
-export const TokenCard = ({ data }: ITokenCardProps) => {
+const TokenCard = ({ data }: ITokenCardProps) => {
   return (
     <article className="card">
       {data ? (
@@ -29,3 +29,5 @@ export const TokenCard = ({ data }: ITokenCardProps) => {
     </article>
   );
 };
+
+export default TokenCard;

@@ -22,7 +22,7 @@ interface ITokenTableProps {
   limitPerPage: number;
 }
 
-export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
+const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const [blockNumber, setBlockNumber] = useState<number>();
   const [tokens, setTokens] = useState<FormatToken[]>([]);
@@ -238,3 +238,5 @@ export const TokenTable = ({ limitPerPage }: ITokenTableProps) => {
     </section>
   );
 };
+
+export default TokenTable;

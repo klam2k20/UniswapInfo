@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { TOKEN_DAY_DATA } from '../apollo/queries';
 import { AreaChartWrapper, LineChartWrapper } from '../components/Charts/LineChart';
 import { ChartPoint, FormatTokenDay, TokenDayData } from '../utils/types';
-import { TokenCard } from '../components/Token/TokenCard';
+import TokenCard from '../components/Token/TokenCard';
 import { LoadingCard, LoadingChart } from '../components/LoadingStates';
 import { ErrorCard, ErrorChart } from '../components/ErrorStates';
 

@@ -16,7 +16,7 @@ interface IPoolTableProps {
   limitPerPage: number;
 }
 
-export const PoolTable = ({ limitPerPage }: IPoolTableProps) => {
+const PoolTable = ({ limitPerPage }: IPoolTableProps) => {
   const [poolIds, setPoolIds] = useState<string[]>([]);
   const [blockDailyNumber, setBlockDailyNumber] = useState<number>();
   const [blockWeeklyNumber, setBlockWeeklyNumber] = useState<number>();
@@ -298,3 +298,5 @@ export const PoolTable = ({ limitPerPage }: IPoolTableProps) => {
     </section>
   );
 };
+
+export default PoolTable;

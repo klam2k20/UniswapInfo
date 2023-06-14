@@ -1,6 +1,6 @@
-import { PoolTable } from '../components/Pool/PoolTable';
-import { TokenTable } from '../components/Token/TokenTable';
-import { TransactionTable } from '../components/Transaction/TransactionTable';
+import PoolTable from '../components/Pool/PoolTable';
+import TokenTable from '../components/Token/TokenTable';
+import TransactionTable from '../components/Transaction/TransactionTable';
 
 const HomePage = () => {
   return (

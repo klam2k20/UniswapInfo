@@ -6,11 +6,11 @@ dayjs.extend(relativeTime);
 
 const ETHERSCAN = 'https://etherscan.io/tx';
 
-export interface ITransactionRowProps {
+interface ITransactionRowProps {
   transaction: FormatTransaction;
 }
 
-export function TransactionRow({ transaction }: ITransactionRowProps) {
+export const TransactionRow = ({ transaction }: ITransactionRowProps) => {
   const formatTransaction = () => {
     const type =
       transaction.type === 'mint' ? 'Add' : transaction.type === 'burn' ? 'Remove' : 'Swap';
@@ -35,4 +35,4 @@ export function TransactionRow({ transaction }: ITransactionRowProps) {
       <span className="right_align">{dayjs(transaction.time).fromNow()}</span>
     </a>
   );
-}
+};

@@ -1,4 +1,4 @@
-import { TransactionTable } from '../components/Transaction/TransactionTable';
+import TransactionTable from '../components/Transaction/TransactionTable';
 
 const TransactionsPage = () => {
   return <TransactionTable limitPerPage={25} />;

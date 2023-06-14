@@ -9,11 +9,11 @@ import { LoadingList, LoadingPagination } from '../LoadingStates';
 import TableColHeader from '../TableColHeader';
 import { TransactionRow } from './TransactionRow';
 
-export interface ITransactionTableProps {
+interface ITransactionTableProps {
   limitPerPage: number;
 }
 
-export function TransactionTable({ limitPerPage }: ITransactionTableProps) {
+const TransactionTable = ({ limitPerPage }: ITransactionTableProps) => {
   const [transactions, setTransactions] = useState<FormatTransaction[]>([]);
   const [page, setPage] = useState<number>(1);
   const [sort, setSort] = useState<SortType>({ prop: 'time', asc: false });
@@ -201,4 +201,6 @@ export function TransactionTable({ limitPerPage }: ITransactionTableProps) {
       </div>
     </section>
   );
-}
+};
+
+export default TransactionTable;
