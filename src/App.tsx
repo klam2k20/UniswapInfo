@@ -1,10 +1,11 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import TokensPage from './pages/TokensPage';
-import PoolsPage from './pages/PoolsPage';
-import TransactionsPage from './pages/TransactionsPage';
 import NavHeader from './components/NavHeader';
+import HomePage from './pages/HomePage';
+import PoolPage from './pages/PoolPage';
+import PoolsPage from './pages/PoolsPage';
 import TokenPage from './pages/TokenPage';
+import TokensPage from './pages/TokensPage';
+import TransactionsPage from './pages/TransactionsPage';
 
 function App() {
   /**
@@ -26,6 +27,7 @@ function App() {
           <Route path="/tokens" element={<TokensPage />} />
           <Route path="/token/:tokenId" element={<TokenPage />} />
           <Route path="/pools" element={<PoolsPage />} />
+          <Route path="/pool/:poolId" element={<PoolPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
         </Route>
       </Routes>

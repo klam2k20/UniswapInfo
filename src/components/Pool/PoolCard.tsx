@@ -1,14 +1,14 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { FormatTokenDay } from '../../utils/types';
-import { formatPrice } from '../../utils/utils';
+import { FormatPoolDay } from '../../utils/types';
+import { formatNumber, formatPrice } from '../../utils/utils';
 dayjs.extend(relativeTime);
 
-interface ITokenCardProps {
-  data: FormatTokenDay | undefined;
+interface IPoolCardProps {
+  data: FormatPoolDay | undefined;
 }
 
-const TokenCard = ({ data }: ITokenCardProps) => {
+const PoolCard = ({ data }: IPoolCardProps) => {
   const volumeSince = dayjs(data?.date).fromNow(true);
   return (
     <article className="card">
@@ -16,22 +16,27 @@ const TokenCard = ({ data }: ITokenCardProps) => {
         <>
           <div className="flex flex-col items-end lg:items-start">
             <span className="text-md font-light">TVL</span>
-            <span className="text-xl ">{formatPrice(data.totalValueLockedUSD)}</span>
+            <span className="text-xl ">{formatPrice(data.tvlUSD)}</span>
           </div>
           <div className="flex flex-col items-end justify-start lg:items-start">
             <span className="text-md font-light">Volume {`(${volumeSince})`}</span>
             <span className="text-xl ">{formatPrice(data.volumeUSD)}</span>
           </div>
           <div className="flex flex-col items-end justify-start lg:items-start">
-            <span className="text-lg font-light">Price</span>
-            <span className="text-xl ">{formatPrice(data.priceUSD)}</span>
+            <span className="text-md font-light">Price Ratio</span>
+            <span className="text-xl">{`1 ${data.token0} = ${formatNumber(data.token1Price, 5)} ${
+              data.token1
+            }`}</span>
+            <span className="text-xl">{`1 ${data.token1} = ${formatNumber(data.token0Price, 5)} ${
+              data.token0
+            }`}</span>
           </div>
         </>
       ) : (
-        <h1 className="flex h-full items-center justify-center text-xl">No Token Data</h1>
+        <h1 className="flex h-full items-center justify-center text-xl">No Pool Data</h1>
       )}
     </article>
   );
 };
 
-export default TokenCard;
+export default PoolCard;

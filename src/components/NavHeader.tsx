@@ -1,6 +1,6 @@
+import { FaceSmileIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaceSmileIcon } from '@heroicons/react/24/outline';
 
 const NavHeader = () => {
   const [selected, setSelected] = useState<string>('overview');

@@ -173,7 +173,7 @@ export const TRANSACTION_DATA = gql`
 `;
 
 /**
- * Get day date for a specified token
+ * Get day data for a specified token
  */
 export const TOKEN_DAY_DATA = gql`
   query GetTokenDayData($tokenId: String!, $timestamp: Int!) {
@@ -182,12 +182,31 @@ export const TOKEN_DAY_DATA = gql`
       first: 1000
       orderBy: date
       orderDirection: asc
-      subgraphError: allow
     ) {
       date
       volumeUSD
       totalValueLockedUSD
       priceUSD
+    }
+  }
+`;
+
+/**
+ * Get day data for a specified pool
+ */
+export const POOL_DAY_DATA = gql`
+  query GetPoolDayData($poolId: String!, $timestamp: Int!) {
+    poolDayDatas(
+      where: { pool: $poolId, date_gt: $timestamp }
+      first: 1000
+      orderBy: date
+      orderDirection: asc
+    ) {
+      date
+      token0Price
+      token1Price
+      tvlUSD
+      volumeUSD
     }
   }
 `;

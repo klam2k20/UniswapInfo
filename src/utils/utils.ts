@@ -1,16 +1,16 @@
 import { FormatPool, FormatToken, FormatTransaction } from './types';
 
-export function formatNumber(number: number) {
+export function formatNumber(number: number, precision: number) {
   if (number >= 1000 && number < 1000000) {
-    return `${(number / 1000).toFixed(2)}k`;
+    return `${(number / 1000).toFixed(precision)}k`;
   } else if (number >= 1000000 && number < 1000000000) {
-    return `${(number / 1000000).toFixed(2)}M`;
+    return `${(number / 1000000).toFixed(precision)}M`;
   } else if (number >= 1000000000 && number < 1000000000000) {
-    return `${(number / 1000000000).toFixed(2)}B`;
+    return `${(number / 1000000000).toFixed(precision)}B`;
   } else if (number >= 1000000000000) {
-    return `${(number / 1000000000000).toFixed(2)}T`;
+    return `${(number / 1000000000000).toFixed(precision)}T`;
   } else {
-    return `${number.toFixed(2)}`;
+    return `${number.toFixed(precision)}`;
   }
 }
 
@@ -18,7 +18,7 @@ export function formatPrice(price: number) {
   if (price < 0.01) {
     return '<$0.01';
   } else {
-    return `$${formatNumber(price)}`;
+    return `$${formatNumber(price, 2)}`;
   }
 }
 

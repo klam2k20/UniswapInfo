@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 /** Block Types */
 export type Block = {
   number: string;
@@ -100,6 +98,28 @@ export type FormatPool = {
   volumeWeeklyChange: number;
 };
 
+export type PoolDay = {
+  date: string;
+  token0Price: string;
+  token1Price: string;
+  tvlUSD: string;
+  volumeUSD: string;
+};
+
+export type PoolDayData = {
+  poolDayDatas: PoolDay[];
+};
+
+export type FormatPoolDay = {
+  date: number;
+  token0: string;
+  token1: string;
+  token0Price: number;
+  token1Price: number;
+  tvlUSD: number;
+  volumeUSD: number;
+};
+
 /** Transaction Types */
 export type TransactionType = {
   origin: string;
@@ -143,4 +163,12 @@ export type SortType = {
 export type ChartPoint = {
   date: number;
   value: number;
+};
+
+export type TwoLineChartPoint = {
+  date: number;
+  name1: string;
+  line1: number;
+  name2: string;
+  line2: number;
 };

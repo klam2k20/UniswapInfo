@@ -1,7 +1,7 @@
-import { FormatTransaction } from '../../utils/types';
-import { formatAccount, formatNumber, formatPrice } from '../../utils/utils';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { FormatTransaction } from '../../utils/types';
+import { formatAccount, formatNumber, formatPrice } from '../../utils/utils';
 dayjs.extend(relativeTime);
 
 const ETHERSCAN = 'https://etherscan.io/tx';
@@ -25,10 +25,10 @@ export const TransactionRow = ({ transaction }: ITransactionRowProps) => {
       rel="noopener noreferrer">
       <span className="text-pink-600">{formatTransaction()}</span>
       <span className="md_show right_align">{formatPrice(transaction.amountUSD)}</span>
-      <span className="lg_show right_align">{`${formatNumber(transaction.amount0)} ${
+      <span className="lg_show right_align">{`${formatNumber(transaction.amount0, 2)} ${
         transaction.token0
       }`}</span>
-      <span className="lg_show right_align">{`${formatNumber(transaction.amount1)} ${
+      <span className="lg_show right_align">{`${formatNumber(transaction.amount1, 2)} ${
         transaction.token1
       }`}</span>
       <span className="lg_show right_align text-pink-600">{formatAccount(transaction.origin)}</span>
