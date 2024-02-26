@@ -20,8 +20,8 @@ const PoolRow = ({ pool, index }: IPoolRowProps) => {
       </span>
       <span className="md:hidden">{`${pool.token0}/${pool.token1}`}</span>
       <span className="right_align">{formatPrice(pool.tvl)}</span>
-      <span className="md_show right_align">{formatPrice(pool.volumeDailyChange)}</span>
-      <span className="lg_show right_align">{formatPrice(pool.volumeWeeklyChange)}</span>
+      <span className="md_show right_align">{formatPrice(pool.volumeDailyChange || 0)}</span>
+      <span className="lg_show right_align">{formatPrice(pool.volumeWeeklyChange || 0)}</span>
     </Link>
   );
 };
